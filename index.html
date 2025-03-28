@@ -34,17 +34,19 @@
         canvas.height = window.innerHeight;
 
         let playerImage = new Image();
-        playerImage.src = "megamerp.png"; // Updated with a working image URL
+        playerImage.src = "megamerp.png"; // Ensure this image exists
+
+        let obstacleImage = new Image();
+        obstacleImage.src = "https://example.com/obstacle.png"; // Replace with actual image URL
+
         let imageLoaded = false;
+        let obstacleImageLoaded = false;
 
-        playerImage.onload = () => {
-            imageLoaded = true;
-        };
+        playerImage.onload = () => imageLoaded = true;
+        obstacleImage.onload = () => obstacleImageLoaded = true;
 
-        playerImage.onerror = () => {
-            console.error("Failed to load player image.");
-            alert("Failed to load player image. Please check the image URL.");
-        };
+        playerImage.onerror = () => console.error("Failed to load player image.");
+        obstacleImage.onerror = () => console.error("Failed to load obstacle image.");
 
         let player = { x: 50, y: canvas.height - 80, width: 50, height: 50, dy: 0, gravity: 1.5, jumpPower: -25, grounded: false };
         let obstacles = [];
@@ -62,8 +64,14 @@
         }
 
         function drawObstacles() {
-            ctx.fillStyle = "black";
-            obstacles.forEach(obs => ctx.fillRect(obs.x, obs.y, obs.width, obs.height));
+            obstacles.forEach(obs => {
+                if (obstacleImageLoaded) {
+                    ctx.drawImage(https://www.google.com/imgres?q=cheeseburgers&imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F4%2F4d%2FCheeseburger.jpg%2F640px-Cheeseburger.jpg&imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FCheeseburger&docid=gsw3TWI66s08dM&tbnid=zq8NWdMECMIZMM&vet=12ahUKEwiGspH1v62MAxUlIkQIHeGhEt8QM3oECF0QAA..i&w=640&h=427&hcb=2&ved=2ahUKEwiGspH1v62MAxUlIkQIHeGhEt8QM3oECF0QAA);
+                } else {
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+                }
+            });
         }
 
         function updateObstacles() {
