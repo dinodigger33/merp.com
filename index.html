@@ -66,7 +66,7 @@
         function drawObstacles() {
             obstacles.forEach(obs => {
                 if (obstacleImageLoaded) {
-                    ctx.drawImage(https://www.google.com/imgres?q=cheeseburgers&imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F4%2F4d%2FCheeseburger.jpg%2F640px-Cheeseburger.jpg&imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FCheeseburger&docid=gsw3TWI66s08dM&tbnid=zq8NWdMECMIZMM&vet=12ahUKEwiGspH1v62MAxUlIkQIHeGhEt8QM3oECF0QAA..i&w=640&h=427&hcb=2&ved=2ahUKEwiGspH1v62MAxUlIkQIHeGhEt8QM3oECF0QAA);
+                    ctx.drawImage(obstacleImage, obs.x, obs.y, obs.width, obs.height);
                 } else {
                     ctx.fillStyle = "black";
                     ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
